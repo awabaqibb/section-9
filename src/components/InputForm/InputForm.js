@@ -94,4 +94,15 @@ const InputForm = (props) => {
         <p className="actions">
           <button type="reset" className="buttonAlt" onClick={resetHandler}>
             Reset
-  
+          </button>
+          <button type="submit" className="button" onClick={calculateHandler}>
+            Calculate
+          </button>
+        </p>
+      </form>
+      <CalculateHandler sendingFormData={formData} />
+    </div>
+  );
+};
+
+export default InputForm;

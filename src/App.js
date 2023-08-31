@@ -6,4 +6,17 @@ import Table from "./components/Table/Table";
 function App() {
   const [formData, setFormData] = useState([]);
 
-  const sendingFormData = (for
+  const sendingFormData = (formData) => {
+    setFormData(formData);
+  };
+
+  return (
+    <div>
+      <Header />
+      <InputForm sendingToParent={sendingFormData} />
+      <Table sendingFromApp={formData} />
+    </div>
+  );
+}
+
+export default App;

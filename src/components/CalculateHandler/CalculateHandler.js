@@ -27,3 +27,6 @@ const CalculateHandler = (props) => {
   }
 
   // do something with yearlyData ...
+};
+
+export default CalculateHandler;
