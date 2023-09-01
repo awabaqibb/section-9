@@ -4,17 +4,18 @@ import InputForm from "./components/InputForm/InputForm";
 import Table from "./components/Table/Table";
 
 function App() {
-  const [formData, setFormData] = useState([]);
+  const [CalcDataInApp, setCalcDataInApp] = useState([]);
 
-  const sendingFormData = (formData) => {
-    setFormData(formData);
+  const gettingCalcData = (formData) => {
+    setCalcDataInApp(formData);
+    console.log(formData);
   };
 
   return (
     <div>
       <Header />
-      <InputForm sendingToParent={sendingFormData} />
-      <Table sendingFromApp={formData} />
+      <InputForm gettingCalcData={gettingCalcData} />
+      <Table sendingFromInput={CalcDataInApp} />
     </div>
   );
 }

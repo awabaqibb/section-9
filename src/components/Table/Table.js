@@ -1,8 +1,17 @@
 import React from "react";
+import classes from "./Table.module.css";
 
 const Table = (props) => {
-  const formData = props.sendingFromApp;
-  const errorMessage = <p>"No data available"</p>; // Define an error message
+  const formData = props.sendingFromInput;
+  // Define an error message
+  const errorMessage = <p style={{ textAlign: "center" }}>No data available</p>;
+
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
 
   return (
     <div>
@@ -10,7 +19,7 @@ const Table = (props) => {
       {formData.length === 0 ? (
         errorMessage
       ) : (
-        <table className="result">
+        <table className={classes.result}>
           <thead>
             <tr>
               <th>Year</th>
@@ -29,6 +38,19 @@ const Table = (props) => {
               <td>TOTAL INVESTED CAPITAL</td>
             </tr>
             {/* You can map over the formData array here to generate rows */}
+            {formData.map((value, index) => (
+              <tr key={value.year}>
+                <td>{value.year}</td>
+                <td>{formatter.format(value.savingsEndOfYear)}</td>
+                <td>{formatter.format(value.yearlyInterest)}</td>
+                <td>
+                  {formatter.format(
+                    value.savingsEndOfYear - value.yearlyContribution
+                  )}
+                </td>
+                <td>{formatter.format(value.yearlyContribution)}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       )}
